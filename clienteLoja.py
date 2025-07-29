@@ -7,36 +7,37 @@
 #• A soma total dos valores gastos.
 #• O nome do cliente que mais gastou na loja.
 #O cadastro deve continuar até o usuário optar por parar.
-totalCliente = 0
+
 totalCaixa = 0
 clienteMaisComprou = ''
-clienteMaisComprou_Valor = -1
-
+clienteMaisComprou_Valor = 0
+valorGasto = 0
 while True:
-  nomeCliente = input('Digite o nome do clinte:')
-  valorGasto_str = input('Digite o valor que o clinte gastou:')
+  nomeCliente = input('Digite o nome do clinte: ')
+  valorGasto_str = input('Digite o valor que o clinte gastou: ')
   if valorGasto_str.isdigit():
     valorGasto = int(valorGasto_str)
   else:
     print('Digito invalido')
-    break
 
-  totalCaixa += valorGasto
-  totalCliente +=1
-  
+  totalCaixa = totalCaixa + valorGasto
+
   if valorGasto > clienteMaisComprou_Valor:
     clienteMaisComprou_Valor = valorGasto
     clienteMaisComprou = nomeCliente
-    
   
-  continuar = input('Deseja cadastrar outro cliente?(S/N)').strip().upper()
-  if continuar != 'S':
+  continuar = input('Deseja cadastrar outro compra ?(S/N)').strip().upper()
+  if continuar == 'S':
+    continue
+  elif continuar == 'N':
+    print('******************DADOS CADASTRADOS***********************')
+    print('-                                                          -')
+    print(f'O total do caixa da loja hoje foi de: R${totalCaixa}')  
+    print(f'O cliente que mais comprou foi o {clienteMaisComprou}que gastou R${clienteMaisComprou_Valor}')
+    print('-                                                          -')
+    print('*******************************************************************************************************')
     break
-print('******************DADOS CADASTRADOS***********************')
-print('-                                                          -')
-print(f'O total do caixa da loja hoje foi de:R${totalCaixa}')  
-print(f'O total de cliete da loja hoje foi de:{totalCliente}')  
-print(f'O cliente que mais comprou foi o {clienteMaisComprou} que gastou R${clienteMaisComprou_Valor}')
-print('-                                                          -')
-print('*******************************************************************************************************')
+  else:
+    print('Digito invalido')
   
+
